@@ -9,7 +9,7 @@ const Page = () => {
     return (
         <div>
             <div className="flex flex-col md:flex-row md:justify-between md:items-center px-4 md:px-10 py-3 md:py-5 gap-2">
-                <h1 className="shrink-0 text-xl font-bold md:text-3xl md:font-light text-black">
+                <h1 className="shrink-0 text-lg font-bold md:text-3xl md:font-light text-black">
                     Welcome, Amal Paul
                 </h1>
 

@@ -7,10 +7,10 @@ const EditFunctionModal = ({ open, onClose, onSubmit, defaultValues = {} }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-end bg-black/40 p-4">
-      <div className="w-full max-w-md bg-[#f6f6f6] rounded-3xl shadow-xl animate-slideInRight">
+      <div className="w-full max-w-md bg-[#ffffff] rounded-3xl shadow-xl animate-slideInRight">
 
         <div className="flex justify-between items-center px-6 py-4 border-b">
-          <h2 className="text-xl font-light text-gray-800">Edit Function</h2>
+          <h2 className="text-lg md:text-xl font-semibold md:font-light text-gray-800">Edit Function</h2>
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-black text-xl"
@@ -28,6 +28,7 @@ const EditFunctionModal = ({ open, onClose, onSubmit, defaultValues = {} }) => {
           <TextField
             fullWidth
             label="Function Name"
+            InputLabelProps={{ shrink: true }}
             defaultValue={defaultValues.name}
             required
             sx={{
@@ -79,6 +80,7 @@ const EditFunctionModal = ({ open, onClose, onSubmit, defaultValues = {} }) => {
           <TextField
             fullWidth
             label="Location"
+            InputLabelProps={{ shrink: true }}
             defaultValue={defaultValues.location}
             required
             sx={{
@@ -101,7 +103,7 @@ const EditFunctionModal = ({ open, onClose, onSubmit, defaultValues = {} }) => {
 
             <button
               type="submit"
-              className="cursor-pointer w-1/2 h-12 rounded-xl bg-[#fdd860] hover:bg-[#ebb400] text-black"
+              className="cursor-pointer w-1/2 h-12 rounded-xl bg-[#505050] md:bg-[#fdd860] hover:bg-[#ebb400] text-white md:text-black"
             >
               Update
             </button>

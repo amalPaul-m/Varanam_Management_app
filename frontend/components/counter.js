@@ -28,16 +28,16 @@ const Counter = () => {
 
   return (
     <div className="flex flex-wrap gap-2 text-black font-light tracking-wider">
-        <div className="text-md sm:text-3xl md:text-4xl">
+        <div className="text-lg sm:text-3xl md:text-4xl">
             {format(days)}<span className="text-xs sm:text-sm ml-1">Day</span>
         </div>
-        <div className="text-md sm:text-3xl md:text-4xl">
+        <div className="text-lg sm:text-3xl md:text-4xl">
             {format(hours)}<span className="text-xs sm:text-sm ml-1">Hr</span>
         </div>
-        <div className="text-md sm:text-3xl md:text-4xl">
+        <div className="text-lg sm:text-3xl md:text-4xl">
             {format(minutes)}<span className="text-xs sm:text-sm ml-1">Min</span>
         </div>
-        <div className="text-md sm:text-3xl md:text-4xl">
+        <div className="text-lg sm:text-3xl md:text-4xl">
             {format(seconds)}<span className="text-xs sm:text-sm ml-1">Sec</span>
         </div>
         </div>
