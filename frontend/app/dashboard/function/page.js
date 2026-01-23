@@ -13,6 +13,7 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { useFunctionData } from "@/context/functionsContext"
 
 const Page = () => {
 
@@ -20,6 +21,8 @@ const Page = () => {
     const [open, setOpen] = useState(false)
     const [editOpen, setEditOpen] = useState(false)
     const [rotate, setRotate] = useState(false)
+
+    const { data, loading, error } = useFunctionData()
 
     const onConfirm = () => {
         router.push("/dashboard")
@@ -99,27 +102,30 @@ const Page = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="hover:bg-gray-100 h-15">
-                                    <td className="px-4 py-2 text-start">1</td>
-                                    <td className="px-4 py-2 text-start">Maduram vepp</td>
-                                    <td className="px-4 py-2 text-start">15-09-2025</td>
-                                    <td className="px-4 py-2 text-start">09.10 AM</td>
-                                    <td className="px-4 py-2 text-start">Prumbavoor</td>
+                                {data.map((item,index) => (
+                                <tr key={item.id} className="hover:bg-gray-100 h-15">
+                                    <td className="px-4 py-2 text-start">{index}</td>
+                                    <td className="px-4 py-2 text-start">{item.name}</td>
+                                    <td className="px-4 py-2 text-start">{item.date}</td>
+                                    <td className="px-4 py-2 text-start">{item.time}</td>
+                                    <td className="px-4 py-2 text-start">{item.location}</td>
                                     <td className="px-4 py-2 text-center"><MdEdit onClick={() => setEditOpen(true)} className="text-2xl text-blue-700 cursor-pointer" /></td>
                                     <td className="px-4 py-2 text-center"><FaTrash onClick={() => setOpen(true)} className="text-xl text-red-700 cursor-pointer" /></td>
                                 </tr>
+                                ))}
                             </tbody>
                         </table>
                         </div>
 
                         {/* mobile view */}
                         <div className="space-y-4">
-                            <div className="block md:hidden w-full">
+                            {data.map((item) => (
+                            <div key={item.id} className="block md:hidden w-full">
                                 <div className="px-4 py-4 rounded-xl bg-[#e2e2e2] text-black text-sm flex items-center justify-between">
                                 <div className="flex flex-col text-start">
-                                    <p className="text-lg font-bold">Maduram vepp</p>
-                                    <p className="text-sm opacity-90 mt-1">15-09-2025 | <span>09.10 AM</span></p>
-                                    <p className="text-sm opacity-90 mt-1">Perumbavoor</p>
+                                    <p className="text-lg font-bold">{item.name}</p>
+                                    <p className="text-sm opacity-90 mt-1">{item.date} | <span>{item.time}</span></p>
+                                    <p className="text-sm opacity-90 mt-1">{item.location}</p>
                                 </div>
                                 <span className="text-lg font-semibold">
                                     <div className="px-2 py-2 text-center bg-[#ffffff] rounded-full"><MdEdit onClick={() => setEditOpen(true)} className="text-xl text-black cursor-pointer" /></div>
@@ -127,24 +133,9 @@ const Page = () => {
                                 </span>
                                 </div>
                             </div>
-
-                            <div className="block md:hidden w-full">
-                                <div className="px-4 py-4 rounded-xl bg-[#e2e2e2] text-black text-sm flex items-center justify-between">
-                                <div className="flex flex-col text-start">
-                                    <p className="text-lg font-bold">Maduram vepp</p>
-                                    <p className="text-sm opacity-90 mt-1">15-09-2025 | <span>09.10 AM</span></p>
-                                    <p className="text-sm opacity-90 mt-1">Perumbavoor</p>
-                                </div>
-                                <span className="text-lg font-semibold">
-                                    <div className="px-2 py-2 text-center bg-[#ffffff] rounded-full"><MdEdit onClick={() => setEditOpen(true)} className="text-xl text-black cursor-pointer" /></div>
-                                    <div className="px-2 py-2 mt-4 text-center bg-[#ffffff] rounded-full"><FaTrash onClick={() => setOpen(true)} className="text-lg text-black cursor-pointer" /></div>
-                                </span>
-                                </div>
-                            </div>
-
+                            ))}
 
                         </div>
-
                     </div>
                     {
                         open

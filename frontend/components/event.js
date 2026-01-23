@@ -1,9 +1,11 @@
 "use client"
+import { useFunctionData } from "@/context/functionsContext"
 import { useRouter } from "next/navigation"
 import { MdArrowOutward } from "react-icons/md"
 
 const Event = () => {
   const router = useRouter()
+  const {data, loading, error } = useFunctionData()
 
   return (
     <div
@@ -22,31 +24,12 @@ const Event = () => {
 
       <div className="mt-4 px-5 mb-4 flex-1 overflow-y-auto scrollbar-thin">
         <div className="space-y-3">
-          <div className="flex justify-between text-black">
-            <p className="text-sm md:text-xl">Bachelor Party</p>
-            <p className="text-xs md:text-lg">10 Days left</p>
-          </div>
-          <div className="flex justify-between text-black">
-            <p className="text-sm md:text-xl">Madhuram vepp</p>
-            <p className="text-xs md:text-lg">12 Days left</p>
-          </div>
-          <div className="flex justify-between text-black">
-            <p className="text-sm md:text-xl">Wedding</p>
-            <p className="text-xs md:text-lg">13 Days left</p>
-          </div>
-
-          <div className="flex justify-between text-black">
-            <p className="text-sm md:text-xl">Bachelor Party</p>
-            <p className="text-xs md:text-lg">10 Days left</p>
-          </div>
-          <div className="flex justify-between text-black">
-            <p className="text-sm md:text-xl">Madhuram vepp</p>
-            <p className="text-xs md:text-lg">12 Days left</p>
-          </div>
-          <div className="flex justify-between text-black">
-            <p className="text-sm md:text-xl">Wedding</p>
-            <p className="text-xs md:text-lg">13 Days left</p>
-          </div>
+          {data.map((item) => (
+            <div key={item.id} className="flex justify-between text-black">
+              <p className="text-sm md:text-xl">{item.name}</p>
+              <p className="text-xs md:text-lg">10 Days left</p>
+            </div>
+          ))}
         </div>
       </div>
 

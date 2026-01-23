@@ -4,8 +4,13 @@ import Guest from "@/components/guest"
 import Event from "@/components/event"
 import Vendors from "@/components/vendors"
 
-const Page = () => {
+async function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 
+const Page = async () => {
+
+     await delay(3000) // 3 seconds
     return (
         <div>
             <div className="flex flex-col md:flex-row md:justify-between md:items-center px-4 md:px-10 py-3 md:py-5 gap-2">

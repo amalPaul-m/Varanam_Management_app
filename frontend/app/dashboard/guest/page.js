@@ -1,4 +1,5 @@
 "use client"
+
 import { IoIosArrowRoundBack } from "react-icons/io"
 import { SlRefresh } from "react-icons/sl"
 import CreateGuest from "@/components/createGuest"
@@ -16,6 +17,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { FaRegCaretSquareUp } from "react-icons/fa"
 import { IoCall } from "react-icons/io5"
 import { FaLocationArrow } from "react-icons/fa6"
+import { useGuestData } from "@/context/guestContext"
+
 
 const Page = () => {
 
@@ -23,6 +26,8 @@ const Page = () => {
     const [open, setOpen] = useState(false)
     const [editOpen, setEditOpen] = useState(false)
     const [rotate, setRotate] = useState(false)
+
+    const { data, loading, error } = useGuestData()
 
     const onConfirm = () => {
         router.push("/dashboard")
@@ -105,36 +110,39 @@ const Page = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="hover:bg-gray-100 h-15">
-                                    <td className="px-4 py-2 text-start">1</td>
-                                    <td className="px-4 py-2 text-start">Amal Paul</td>
-                                    <td className="px-4 py-2 text-start">Close Relative</td>
-                                    <td className="px-4 py-2 text-start">Bachelor party, madhuram vepp, wedding</td>
-                                    <td className="px-4 py-2 text-start">5</td>
-                                    <td className="px-4 py-2 text-start">Non Veg <FaRegCaretSquareUp className="ml-3 text-red-500"/></td>
-                                    <td className="px-4 py-2 text-start">+91 8301877983</td>
-                                    <td className="px-4 py-2 text-start">Prumbavoor</td>
+                            {data.map((item,index) => (
+                                <tr key={item.id} className="hover:bg-gray-100 h-15">
+                                    <td className="px-4 py-2 text-start">{index}</td>
+                                    <td className="px-4 py-2 text-start">{item.name}</td>
+                                    <td className="px-4 py-2 text-start">{item.relation}</td>
+                                    <td className="px-4 py-2 text-start">{item.functions.map((val)=>val+", ")}</td>
+                                    <td className="px-4 py-2 text-start">{item.total_guest}</td>
+                                    <td className="px-4 py-2 text-start">{item.food} <FaRegCaretSquareUp className={`ml-3 ${item.food==="Veg"?"text-green-500":"text-red-500"}`}/></td>
+                                    <td className="px-4 py-2 text-start">{item.mobile}</td>
+                                    <td className="px-4 py-2 text-start">{item.address}</td>
                                     <td className="px-4 py-2 text-center"><MdEdit onClick={() => setEditOpen(true)} className="text-2xl text-blue-700 cursor-pointer" /></td>
                                     <td className="px-4 py-2 text-center"><FaTrash onClick={() => setOpen(true)} className="text-xl text-red-700 cursor-pointer" /></td>
                                 </tr>
+                            ))}
                             </tbody>
                         </table>
                         </div>
 
                         {/* mobile view */}
                         <div className="space-y-4">
-                            <div className="block md:hidden w-full">
+                            {data.map((item) => (
+                            <div key={item.id} className="block md:hidden w-full">
                                 <div className="px-4 py-4 rounded-xl bg-[#ebebeb] text-black text-sm flex items-center justify-between">
                                 <div className="flex flex-col text-start">
                                 <p className="text-lg font-bold flex items-center gap-1">
-                                Amal Paul
+                                {item.name}
                                 <span className="flex items-center gap-1 text-sm font-medium bg-gray-200 px-2 py-0.5 rounded-full">
-                                    <FaRegCaretSquareUp className="text-red-500" />
-                                    <span className="ml-2 px-3 py-1 bg-white shadow-sm rounded-full">5</span>
+                                    <FaRegCaretSquareUp className={`${item.food==="Veg"?"text-green-500":"text-red-500"}`} />
+                                    <span className="ml-2 px-3 py-1 bg-white shadow-sm rounded-full">{item.total_guest}</span>
                                 </span>
                                 </p>                                    
-                                <p className="text-sm opacity-90 mt-1">Close Relative</p>
-                                <p className="text-sm opacity-90 mt-1">Bachelor party, madhuram vepp, wedding</p>
+                                <p className="text-sm opacity-90 mt-1">{item.relation}</p>
+                                <p className="text-sm opacity-90 mt-1">{item.functions.map((val)=>val+", ")}</p>
                                 <p className="flex text-sm opacity-90 mt-4 items-center gap-2"><IoCall className="text-green-600"/> +91 8301877983</p>
                                 <p className="flex text-sm opacity-90 mt-1 items-center gap-2"><FaLocationArrow className="text-blue-600"/> Perumbavoor</p>
                                 </div>
@@ -145,31 +153,8 @@ const Page = () => {
                                 </span>
                                 </div>
                             </div>
-
-                            <div className="block md:hidden w-full">
-                                <div className="px-4 py-4 rounded-xl bg-[#ebebeb] text-black text-sm flex items-center justify-between">
-                                <div className="flex flex-col text-start">
-                                <p className="text-lg font-bold flex items-center gap-1">
-                                Amal Paul
-                                <span className="flex items-center gap-1 text-sm font-medium bg-gray-200 px-2 py-0.5 rounded-full">
-                                    <FaRegCaretSquareUp className="text-red-500" />
-                                    <span className="ml-2 px-3 py-1 bg-white shadow-sm rounded-full">5</span>
-                                </span>
-                                </p>                                    
-                                <p className="text-sm opacity-90 mt-1">Close Relative</p>
-                                <p className="text-sm opacity-90 mt-1">Bachelor party, madhuram vepp, wedding</p>
-                                <p className="flex text-sm opacity-90 mt-4 items-center gap-2"><IoCall className="text-green-600"/> +91 8301877983</p>
-                                <p className="flex text-sm opacity-90 mt-1 items-center gap-2"><FaLocationArrow className="text-blue-600"/> Perumbavoor</p>
-                                </div>
-                                <span className="text-lg font-semibold space-y-4">
-                                    <div className="px-2 py-2 text-center bg-[#ffffff] rounded-full"><IoCall className="text-xl text-black cursor-pointer"/></div>
-                                    <div className="px-2 py-2 text-center bg-[#ffffff] rounded-full"><MdEdit onClick={() => setEditOpen(true)} className="text-xl text-black cursor-pointer" /></div>
-                                    <div className="px-2 py-2 text-center bg-[#ffffff] rounded-full"><FaTrash onClick={() => setOpen(true)} className="text-lg text-black cursor-pointer" /></div>
-                                </span>
-                                </div>
-                            </div>
-
-
+                            ))}
+                            
                         </div>
 
                     </div>

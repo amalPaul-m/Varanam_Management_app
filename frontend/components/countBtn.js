@@ -1,4 +1,7 @@
 "use client"
+import { IoPeopleSharp, IoPerson } from "react-icons/io5"
+import { BiSolidParty } from "react-icons/bi"
+import { IoMdPricetags } from "react-icons/io"
 
 const CountBtn = () => {
   return (
@@ -37,13 +40,13 @@ const CountBtn = () => {
   {/* make Mobile view */}
 
     <div className="block md:hidden w-[48%]">
-    <div className="px-4 py-4 rounded-xl bg-[#303030] text-white text-sm flex items-center justify-between">
+    <div className="px-4 py-4 rounded-xl bg-[#1a1a1a] text-white text-sm flex items-center justify-between">
       <div className="flex flex-col text-start">
         <p className="text-base font-bold">Guests</p>
-        <p className="text-sm opacity-90">Total Count</p>
+        <p className="text-sm opacity-90">100</p>
       </div>
-      <span className="text-lg font-semibold">
-        100
+      <span className="text-3xl font-semibold">
+        <IoPeopleSharp />
       </span>
     </div>
   </div>
@@ -52,10 +55,10 @@ const CountBtn = () => {
     <div className="px-4 py-4 rounded-xl bg-[#f5b400] text-white text-sm flex items-center justify-between">
       <div className="flex flex-col text-start">
         <p className="text-base font-bold">Vendors</p>
-        <p className="text-sm opacity-90">Total Count</p>
+        <p className="text-sm opacity-90">25</p>
       </div>
-      <span className="text-lg font-semibold">
-        100
+      <span className="text-3xl font-semibold">
+        <IoPerson />
       </span>
     </div>
   </div>
@@ -63,11 +66,11 @@ const CountBtn = () => {
       <div className="block md:hidden w-[48%]">
     <div className="px-4 py-4 rounded-xl bg-[#b10044] text-white text-sm flex items-center justify-between">
       <div className="flex flex-col text-start">
-        <p className="text-base font-bold">Guests</p>
-        <p className="text-sm opacity-90">Total Count</p>
+        <p className="text-base font-bold">Functions</p>
+        <p className="text-sm opacity-90">8</p>
       </div>
-      <span className="text-lg font-semibold">
-        100
+      <span className="text-3xl font-semibold">
+        <BiSolidParty />
       </span>
     </div>
   </div>
@@ -75,11 +78,11 @@ const CountBtn = () => {
   <div className="block md:hidden w-[48%]">
     <div className="px-4 py-4 rounded-xl bg-[#8d2302] text-white text-sm flex items-center justify-between">
       <div className="flex flex-col text-start">
-        <p className="text-base font-bold">Vendors</p>
-        <p className="text-sm opacity-90">Total Count</p>
+        <p className="text-base font-bold">Budget</p>
+        <p className="text-sm opacity-90">₹ 300000</p>
       </div>
-      <span className="text-lg font-semibold">
-        100
+      <span className="text-3xl font-semibold">
+        <IoMdPricetags />
       </span>
     </div>
   </div>
